@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ */
+
+/**
+ * Extension configuration file.
+ *
+ * @category   TechDivision
+ * @package    TechDivision_SystemConfigDiff
+ * @subpackage Config
+ * @copyright  Copyright (c) 1996-2012 TechDivision GmbH (http://www.techdivision.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @version    ${release.version}
+ * @since      Class available since Release 0.1.0
+ * @author     Florian Sydekum <fs@techdivision.com>
+ */
+ -->
+<config>
+    <modules>
+        <TechDivision_SystemConfigDiff>
+            <version>${release.version}</version>
+        </TechDivision_SystemConfigDiff>
+    </modules>
+    <frontend>
+        <translate>
+            <modules>
+                <techdivision_systemconfigdiff>
+                    <files>
+                        <default>TechDivision_SystemConfigDiff.csv</default>
+                    </files>
+                </techdivision_systemconfigdiff>
+            </modules>
+        </translate>
+        <routers>
+            <techdivision_systemconfigdiff>
+                <use>standard</use>
+                <args>
+                    <module>TechDivision_SystemConfigDiff</module>
+                    <frontName>techdivision_systemconfigdiff</frontName>
+                </args>
+            </techdivision_systemconfigdiff>
+        </routers>
+        <layout>
+            <updates>
+                <techdivision_systemconfigdiff>
+                    <file>techdivision/systemconfigdiff.xml</file>
+                </techdivision_systemconfigdiff>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+            <techdivision_systemconfigdiff>
+                <use>admin</use>
+                <args>
+                    <module>TechDivision_SystemConfigDiff</module>
+                    <frontName>admin_techdivision_systemconfigdiff</frontName>
+                </args>
+            </techdivision_systemconfigdiff>
+        </routers>
+    </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <techdivision_systemconfigdiff>
+                    <files>
+                        <default>TechDivision_SystemConfigDiff.csv</default>
+                    </files>
+                </techdivision_systemconfigdiff>
+            </modules>
+        </translate>
+        <menu>
+            <system module="techdivision_systemconfigdiff" translate="title">
+                <children>
+                    <diff_overview module="techdivision_systemconfigdiff" translate="title">
+                        <title>Config Diff</title>
+                        <sort_order>1</sort_order>
+                        <action>techdivision_systemconfigdiff/adminhtml_index</action>
+                    </diff_overview>
+                </children>
+            </system>
+        </menu>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <techdivision_systemconfigdiff translate="title" module="techdivision_systemconfigdiff">
+                                            <title>Stub</title>
+                                            <sort_order>50</sort_order>
+                                        </techdivision_systemconfigdiff>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <techdivision_systemconfigdiff>
+                    <file>techdivision/systemconfigdiff.xml</file>
+                </techdivision_systemconfigdiff>
+            </updates>
+        </layout>
+        <events>
+            <controller_action_layout_render_before>
+                <observers>
+                    <techdivision_systemconfigdiff_update_template>
+                        <type>singleton</type>
+                        <class>techdivision_systemconfigdiff/observer</class>
+                        <method>updateTemplate</method>
+                    </techdivision_systemconfigdiff_update_template>
+                </observers>
+            </controller_action_layout_render_before>
+        </events>
+    </adminhtml>   
+    <global>
+        <models>
+            <techdivision_systemconfigdiff>
+                <class>TechDivision_SystemConfigDiff_Model</class>
+                <resourceModel>techdivision_systemconfigdiff_resource</resourceModel>
+            </techdivision_systemconfigdiff>
+            <techdivision_systemconfigdiff_resource>
+                <class>TechDivision_SystemConfigDiff_Model_Resource</class>
+                <entities>
+                    <diff_config>
+                        <table>techdivision_systemconfigdiff_diff_config</table>
+                    </diff_config>
+                    <diff_page>
+                        <table>techdivision_systemconfigdiff_diff_page</table>
+                    </diff_page>
+                    <diff_block>
+                        <table>techdivision_systemconfigdiff_diff_block</table>
+                    </diff_block>
+                </entities>
+            </techdivision_systemconfigdiff_resource>
+        </models>
+        <resources>
+            <techdivision_systemconfigdiff_setup>
+                <setup>
+                    <module>TechDivision_SystemConfigDiff</module>
+                    <class>TechDivision_SystemConfigDiff_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </techdivision_systemconfigdiff_setup>
+            <techdivision_systemconfigdiff_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </techdivision_systemconfigdiff_write>
+            <techdivision_systemconfigdiff_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </techdivision_systemconfigdiff_read>
+        </resources>
+        <blocks>
+            <techdivision_systemconfigdiff>
+                <class>TechDivision_SystemConfigDiff_Block</class>
+            </techdivision_systemconfigdiff>
+            <adminhtml>
+                <rewrite>
+                    <system_config_form_field>TechDivision_SystemConfigDiff_Block_Adminhtml_System_Config_Form_Field</system_config_form_field>
+                    <system_config_form_field_regexceptions>TechDivision_SystemConfigDiff_Block_Adminhtml_System_Config_Form_Field_Regexceptions</system_config_form_field_regexceptions>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <helpers>
+            <techdivision_systemconfigdiff>
+                <class>TechDivision_SystemConfigDiff_Helper</class>
+            </techdivision_systemconfigdiff>
+        </helpers>
+        <differs>
+            <techdivision_systemconfigdiff_config>
+                <class>techdivision_systemconfigdiff/differ_config</class>
+            </techdivision_systemconfigdiff_config>
+            <techdivision_systemconfigdiff_cms>
+                <class>techdivision_systemconfigdiff/differ_cms</class>
+            </techdivision_systemconfigdiff_cms>
+        </differs>
+    </global>
+</config>

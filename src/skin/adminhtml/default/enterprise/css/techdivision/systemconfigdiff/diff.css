@@ -1,0 +1,51 @@
+/**
+ * techdivision/systemconfigdiff/diff.css
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   TechDivision
+ * @package    TechDivision_SystemConfigDiff
+ * @subpackage Block
+ * @copyright  Copyright (c) 1996-2011 TechDivision GmbH (http://www.techdivision.com)
+ * @license	   http://www.gnu.org/licenses/gpl.html GPL, version 3
+ * @version    ${release.version}
+ * @link       http://www.techdivision.com
+ * @since      File available since Release 0.1.2
+ * @author     Florian Sydekum <fs@techdivision.com>
+ */
+
+/**
+ * Css for backend.
+ *
+ * @category   TechDivision
+ * @package    TechDivision_SystemConfigDiff
+ * @subpackage Block
+ * @copyright  Copyright (c) 2010 <info@techdivision.com> - TechDivision GmbH
+ * @license    http://opensource.org/licenses/osl-3.0.php
+ *             Open Software License (OSL 3.0)
+ * @author     Florian Sydekum <fs@techdivision.com>
+ */
+
+/* System -> Config */
+.config-diff-relative {position: relative;}
+.switcher-diff-error {background: url("../../../images/techdivision/systemconfigdiff/selectDiffError.png") no-repeat scroll right -3px transparent;}
+.tabs-diff-error {background: url(../../../images/error_msg_icon.gif) no-repeat 0px 0px; position: absolute; width: 16px; height: 16px; top: 4px; left: 190px;}
+.edit-diff-hidden {display: none;}
+.replace-config {margin: 5px 10px 0;}
+button.btn-replace span {background-image: url("../../../images/techdivision/systemconfigdiff/bkg_icon-replacebtn.png"); padding-left: 20px;}
+
+/* System -> Config diff - General */
+.grid table {table-layout: fixed;}
+.grid table td {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+
+/* System -> Config diff - Popup */
+#popup {position: absolute; border: 5px solid gray; padding: 10px; background: #fff;}
+#system1 {float: left; width: 389px; border-right: 1px solid gray; margin-right: -1px; padding-right: 10px;}
+#system2 {float: left; width: 389px; border-left: 1px solid gray; padding-left: 10px;}
+#popup .popup-heading {font-weight: bold; text-align: center; border-bottom: 1px solid gray; margin-bottom: 10px;}
+#popup .popup-content {word-wrap: break-word;}
+#close {background: url(../../../images/dashboard-close.gif) no-repeat 0px 0px; width: 13px; height: 13px; position: absolute; right: 5px; top: 5px;}

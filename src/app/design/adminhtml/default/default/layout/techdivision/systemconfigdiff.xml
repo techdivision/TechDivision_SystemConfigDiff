@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ */
+
+/**
+ * techdivision/systemconfigdiff.xml
+ *
+ * Layout settings for backend.
+ *
+ * @category   TechDivision
+ * @package    TechDivision_SystemConfigDiff
+ * @subpackage Layout
+ * @copyright  Copyright (c) 1996-2012 TechDivision GmbH (http://www.techdivision.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @version    ${release.version}
+ * @since      Class available since Release 0.1.0
+ * @author     Florian Sydekum <fs@techdivision.com>
+ */
+ -->
+<layout version="0.1.0">
+    <techdivision_systemconfigdiff_adminhtml_index_index>
+        <reference name="content">
+            <block type="techdivision_systemconfigdiff/adminhtml_overview" name="diff_edit" />
+        </reference>
+
+        <reference name="left">
+            <block type="techdivision_systemconfigdiff/adminhtml_overview_tabs" name="diff_tabs" />
+        </reference>
+    </techdivision_systemconfigdiff_adminhtml_index_index>
+</layout>
