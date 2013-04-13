@@ -35,6 +35,7 @@ class TechDivision_SystemConfigDiff_Block_Adminhtml_System_Config_Form_Field
 {
     /**
      * The render method is copied from the core block. Only only one line at the end of this method is added.
+     * This method has to be made backwards compatible. Versions lower 1.12.0.1 have different code in this function.
      *
      * @param Varien_Data_Form_Element_Abstract $element The field element to be rendered
      * @return string Html of field
@@ -43,7 +44,13 @@ class TechDivision_SystemConfigDiff_Block_Adminhtml_System_Config_Form_Field
     {
         $id = $element->getHtmlId();
 
-        $html = '<td class="label"><label for="'.$id.'">'.$element->getLabel().'</label></td>';
+        if(version_compare(Mage::getVersion(), '1.12.0.1') >= 0){
+            $html = '<td class="label"><label for="'.$id.'">'.$element->getLabel().'</label></td>';
+        } else {
+            $useContainerId = $element->getData('use_container_id');
+            $html = '<tr id="row_' . $id . '">'
+                . '<td class="label"><label for="'.$id.'">'.$element->getLabel().'</label></td>';
+        }
 
         //$isDefault = !$this->getRequest()->getParam('website') && !$this->getRequest()->getParam('store');
         $isMultiple = $element->getExtType()==='multiple';
@@ -70,14 +77,20 @@ class TechDivision_SystemConfigDiff_Block_Adminhtml_System_Config_Form_Field
             }
         }
 
-        if ($element->getTooltip()) {
-            $html .= '<td class="value with-tooltip">';
-            $html .= $this->_getElementHtml($element);
-            $html .= '<div class="field-tooltip"><div>' . $element->getTooltip() . '</div></div>';
+        if(version_compare(Mage::getVersion(), '1.12.0.1') >= 0){
+            if ($element->getTooltip()) {
+                $html .= '<td class="value with-tooltip">';
+                $html .= $this->_getElementHtml($element);
+                $html .= '<div class="field-tooltip"><div>' . $element->getTooltip() . '</div></div>';
+            } else {
+                $html .= '<td class="value">';
+                $html .= $this->_getElementHtml($element);
+            };
         } else {
             $html .= '<td class="value">';
             $html .= $this->_getElementHtml($element);
-        };
+        }
+
         if ($element->getComment()) {
             $html.= '<p class="note"><span>'.$element->getComment().'</span></p>';
         }
@@ -126,7 +139,12 @@ class TechDivision_SystemConfigDiff_Block_Adminhtml_System_Config_Form_Field
         }
         $html.= '</td>';
 
-        return $this->_decorateRowHtml($element, $html);
+        if(version_compare(Mage::getVersion(), '1.12.0.1') >= 0){
+            return $this->_decorateRowHtml($element, $html);
+        } else {
+            $html.= '</tr>';
+            return $html;
+        }
     }
 
     /**
