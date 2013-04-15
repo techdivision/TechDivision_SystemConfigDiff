@@ -76,12 +76,24 @@ class TechDivision_SystemConfigDiff_Adminhtml_IndexController
                 return false;
             }
 
-            // Set up the web service client and login
+            // Set up the web service client
             $proxy = new SoapClient($apiUrl);
-            $sessionId = $proxy->login($apiUser, $apiPwd);
 
-            // Get system config of other system
-            $otherConfig = json_decode($proxy->systemConfigGetConfig($sessionId), true);
+            // Login and get system config of other system
+            if($configHelper->getSystemsettingsWsi()){
+                $session = $proxy->login(array(
+                    'username' => $apiUser,
+                    'apiKey' => $apiPwd
+                ));
+                $sessionId = $session->result;
+                $otherConfig = $proxy->systemConfigGetConfig(array('sessionId' => $sessionId));
+            } else {
+                $sessionId = $proxy->login($apiUser, $apiPwd);
+                $otherConfig = $proxy->systemConfigGetConfig($sessionId);
+            }
+
+            // Deserialize the result
+            $otherConfig = json_decode($otherConfig, true);
         }catch(Exception $e){
             Mage::getSingleton('core/session')->addError('SOAP error: ' . $e->getMessage());
             $this->_redirect('*/*/');
