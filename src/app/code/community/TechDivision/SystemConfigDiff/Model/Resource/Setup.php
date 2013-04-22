@@ -1,6 +1,6 @@
 <?php
 /**
- * TechDivision_SystemConfigDiff_Model_Resource_Setup
+ * TechDivision_SystemConfigDiff
  *
  * NOTICE OF LICENSE
  *
@@ -15,11 +15,11 @@
  * @category   TechDivision
  * @package    TechDivision_SystemConfigDiff
  * @subpackage Model
- * @copyright  Copyright (c) 1996-2012 TechDivision GmbH (http://www.techdivision.com)
+ * @copyright  Copyright (c) 1996-2013 TechDivision GmbH (http://www.techdivision.com)
  * @license    http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * @version    ${release.version}
  * @since      Class available since Release 0.1.0
- * @author     TechDivision Core Team <core@techdivision.com>
+ * @author     Florian Sydekum <fs@techdivision.com>
  */
 class TechDivision_SystemConfigDiff_Model_Resource_Setup
     extends Mage_Eav_Model_Entity_Setup

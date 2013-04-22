@@ -4,44 +4,22 @@
  *
  * NOTICE OF LICENSE
  *
- * TechDivision_SystemConfigDiff is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * TechDivision_SystemConfigDiff is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with TechDivision_SystemConfigDiff.  If not, see <http://www.gnu.org/licenses/>.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade TechDivision_SystemConfigDiff to newer
- * versions in the future. If you wish to customize TechDivision_SystemConfigDiff for your
- * needs please refer to http://www.techdivision.com for more information.
- *
- * @category   	TechDivision
- * @package    	TechDivision_SystemConfigDiff
- * @copyright  	Copyright (c) 2011 <info@techdivision.com> TechDivision GmbH
- * @license    	<http://www.gnu.org/licenses/>
- * 			   	GNU General Public License (GPL 3)
- * @author  	Firstname Lastname <xy@techdivision.com>
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
  */
 
 /**
- * TechDivision_SystemConfigDiff_Helper_Config_Abstract
- *
  * Implements abstract block functionality for module.
  *
- * @category   	TechDivision
- * @package    	TechDivision_SystemConfigDiff
- * @copyright  	Copyright (c) 2011 <info@techdivision.com> TechDivision GmbH
- * @license    	<http://www.gnu.org/licenses/>
- * 				GNU General Public License (GPL 3)
- * @author      Firstname Lastname <xy@techdivision.com>
+ * @category   TechDivision
+ * @package    TechDivision_SystemConfigDiff
+ * @subpackage Helper
+ * @copyright  Copyright (c) 1996-2013 TechDivision GmbH (http://www.techdivision.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @version    ${release.version}
+ * @since      Class available since Release 0.1.0
+ * @author     Florian Sydekum <fs@techdivision.com>
  */
 abstract class TechDivision_SystemConfigDiff_Helper_Config_Abstract
 extends Mage_Core_Helper_Abstract
