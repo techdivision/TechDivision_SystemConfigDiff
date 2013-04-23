@@ -78,6 +78,7 @@ class TechDivision_SystemConfigDiff_Adminhtml_IndexController
                 ));
                 $sessionId = $session->result;
                 $otherConfig = $proxy->systemConfigGetConfig(array('sessionId' => $sessionId));
+                $otherConfig = $otherConfig->result;
             } else {
                 $sessionId = $proxy->login($apiUser, $apiPwd);
                 $otherConfig = $proxy->systemConfigGetConfig($sessionId);

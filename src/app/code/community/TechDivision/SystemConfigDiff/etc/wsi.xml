@@ -30,11 +30,29 @@
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   name="{{var wsdl.name}}"
                   targetNamespace="urn:{{var wsdl.name}}">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:{{var wsdl.name}}">
+            <xsd:element name="systemConfigGetConfigRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="systemConfigGetConfigResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
     <wsdl:message name="systemConfigGetConfigRequest">
-        <wsdl:part name="sessionId" element="xsd:string" />
+        <wsdl:part name="parameters" element="typens:systemConfigGetConfigRequestParam" />
     </wsdl:message>
     <wsdl:message name="systemConfigGetConfigResponse">
-        <wsdl:part name="result" type="xsd:string" />
+        <wsdl:part name="parameters" type="typens:systemConfigGetConfigResponseParam" />
     </wsdl:message>
     <wsdl:portType name="{{var wsdl.handler}}PortType">
         <wsdl:operation name="systemConfigGetConfig">
@@ -44,14 +62,14 @@
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
-        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
         <wsdl:operation name="systemConfigGetConfig">
-            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <soap:operation soapAction="" />
             <wsdl:input>
-                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+                <soap:body use="literal" />
             </wsdl:input>
             <wsdl:output>
-                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+                <soap:body use="literal" />
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
