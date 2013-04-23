@@ -17,7 +17,7 @@ Features
 
 See our video illustrating the features:
 
-![System config diff](https://github.com/techdivision/TechDivision_SystemConfigDiff/blob/github/doc/systemconfigdiff.png?raw=true)
+![System config diff](https://raw.github.com/techdivision/TechDivision_SystemConfigDiff/github/doc/systemconfigdiff.png)
 
 Purpose
 -
