@@ -85,11 +85,11 @@ System Configuration
 
 On the reference system you have to configure a webservice user which has
 sufficient rights for *System Config/Getting Config*. On the other system
-you have configure the api settings. As the module uses version 2 of the API
+you have to configure the api settings. As the module uses version 2 of the API
 you have to use the following URL: http://magentohost/api/v2_soap/?wsdl=1.
 You can define aliases for both systems for displaying the diffs. Also you
 can turn on/off the diff display in the system configuration. Optionally you
-can declar ignore paths which will not be shown as diff in system configuration.
+can declare ignore paths which will not be shown as diff in system configuration.
 This could be helpful for paths where you are sure they will never be the same
 like the base url.
 
