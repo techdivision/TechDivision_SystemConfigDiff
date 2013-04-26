@@ -194,4 +194,23 @@
             </techdivision_systemconfigdiff_cms>
         </differs>
     </global>
+    <crontab>
+        <jobs>
+            <update_system_config_diff>
+                <schedule>
+                    <config_path>techdivision_systemconfigdiff/systemsettings/cron</config_path>
+                </schedule>
+                <run>
+                    <model>techdivision_systemconfigdiff/systemDiff::doCron</model>
+                </run>
+            </update_system_config_diff>
+        </jobs>
+    </crontab>
+    <default>
+        <techdivision_systemconfigdiff>
+            <systemsettings>
+                <cron>10 1 * * *</cron>
+            </systemsettings>
+        </techdivision_systemconfigdiff>
+    </default>
 </config>
