@@ -87,10 +87,6 @@ class TechDivision_SystemConfigDiff_Adminhtml_IndexController
                 echo 0;
                 return;
             }
-
-            // No entry found
-            echo 0;
-            return;
         } catch(Exception $e){
             // In case of something went wrong
             Mage::logException($e);
