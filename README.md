@@ -14,6 +14,7 @@ Features
 * Easy and intuitive diff displaying in the system configuration
 * Differentiates between all scopes
 * Synchronisation between both systems
+* Cron job functionality to update diffs automatically
 
 See our video illustrating the features:
 
