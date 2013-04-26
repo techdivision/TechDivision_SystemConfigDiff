@@ -102,6 +102,15 @@
                             <show_in_store>1</show_in_store>
                             <comment>Use crontab format (e.g. 10 1 * * * for 1:10 am)</comment>
                         </cron>
+                        <base_url_replace_enabled translate="label">
+                            <label>Enable replacement of base url</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </base_url_replace_enabled>
                     </fields>
                 </systemsettings>
                 <displaysettings>

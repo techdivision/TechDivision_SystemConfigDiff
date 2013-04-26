@@ -52,10 +52,8 @@ class TechDivision_SystemConfigDiff_Adminhtml_IndexController
     public function newAction()
     {
         // Get system diff model to start the diff
-        $differ = Mage::getModel('techdivision_systemconfigdiff/systemDiff');
-
         try{
-            $differ->systemDiff();
+            $this->getSystemDiffModel()->systemDiff();
         }catch(Exception $e){
             Mage::getSingleton('core/session')->addError('SOAP error: ' . $e->getMessage());
             $this->_redirect('*/*/');
@@ -75,45 +73,42 @@ class TechDivision_SystemConfigDiff_Adminhtml_IndexController
         try{
             // Get path, scope and scopeId from Ajax call
             $params = $this->getRequest()->getparams();
-            $path = $params['path'];
-            $scope = $params['scope'];
-            $scopeId = $params['scopeId'];
+            $filterArray = array(
+                'path' => $params['path'],
+                'scope' => $params['scope'],
+                'scope_id' => $params['scopeId']
+            );
 
-            // Find the diff entry specified by path, scope and scopeId
-            $collection = Mage::getModel('techdivision_systemconfigdiff/config')->getCollection()
-                ->addFieldToFilter('systemXml', '1')
-                ->addFieldToFilter('path', $path)
-                ->addFieldtoFilter('scope', $scope)
-                ->addFieldToFilter('scope_id', $scopeId);
-
-            // If entry was found
-            $entry = $collection->getFirstItem();
-            if(count($entry->getData()) > 0){
-                // Save the config value from other system
-                $value = $entry->getSystem2Value();
-                /* @var Mage_Core_Model_Resource_Config $configResource */
-                $configResource = Mage::getResourceModel('core/config');
-                $configResource->saveConfig($path, $value, $scope, $scopeId);
-
-                // Delete the diff entry
-                /* @var TechDivision_SystemConfigDiff_Helper_Data $helper */
-                $helper = Mage::helper('techdivision_systemconfigdiff');
-                $helper->deleteDiff($entry, $path, $scope, $scopeId);
-
-                // Deletion successful
+            if($this->getSystemDiffModel()->replaceConfig('config', $filterArray)){
                 echo 1;
                 return;
+            } else {
+                // No entry found
+                echo 0;
+                return;
             }
-
-            // No entry found
-            echo 0;
-            return;
         } catch(Exception $e){
             // In case of something went wrong
             Mage::logException($e);
             echo 0;
             return;
         }
+    }
+
+    /**
+     * Replace all action
+     *
+     * @return void
+     */
+    public function replaceAllAction(){
+        $systemDiff = $this->getSystemDiffModel();
+
+        $systemDiff->replaceConfig('config', array());
+        $systemDiff->replaceConfig('page', array());
+        $systemDiff->replaceConfig('block', array());
+
+        // Redirect to overview
+        $this->_redirect('*/*/');
     }
 
     /**
@@ -165,5 +160,12 @@ class TechDivision_SystemConfigDiff_Adminhtml_IndexController
                  ->createBlock('techdivision_systemconfigdiff/adminhtml_overview_tabs_block', 'tab_block')
                  ->toHtml()
         );
+    }
+
+    /**
+     * @return false|TechDivision_SystemConfigDiff_Model_SystemDiff
+     */
+    protected function getSystemDiffModel(){
+        return Mage::getModel('techdivision_systemconfigdiff/systemDiff');
     }
 }
