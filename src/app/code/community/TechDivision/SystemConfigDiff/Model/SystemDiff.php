@@ -75,6 +75,58 @@ class TechDivision_SystemConfigdiff_Model_SystemDiff
     }
 
     /**
+     * Replaces the config by the given diff defined by filter array.
+     *
+     * @param $diffModel The diff model the diff belongs to
+     * @param $filterArray The filter array specifies the diff
+     * @return bool (Un-)successful
+     */
+    public function replaceConfig($diffModel, $filterArray)
+    {
+        $baseUrlPaths = array();
+        if(!Mage::helper('techdivision_systemconfigdiff/config')->getSystemsettingsBaseUrlReplaceEnabled()){
+            $baseUrlPaths[] = 'web/unsecure/base_url';
+            $baseUrlPaths[] = 'web/secure/base_url';
+        }
+
+        // Find the diff entry specified by filter array
+        $collection = Mage::getModel('techdivision_systemconfigdiff/' . $diffModel)->getCollection();
+        foreach($filterArray as $filter => $filterValue){
+            $collection->addFieldToFilter($filter, $filterValue);
+        }
+
+        // If no data was found
+        if($collection->count() === 0){
+            return false;
+        }
+
+        // If entry was found
+        foreach($collection as $entry){
+            // Save the config value from other system
+            $value = $entry->getSystem2Value();
+            $path = $entry->getPath();
+
+            // Skip if path is base url specific
+            if(in_array($path, $baseUrlPaths)) continue;
+
+            $scope = $entry->getScope();
+            $scopeId = $entry->getScopeId();
+
+            /* @var Mage_Core_Model_Resource_Config $configResource */
+            $configResource = Mage::getResourceModel('core/config');
+            $configResource->saveConfig($path, $value, $scope, $scopeId);
+
+            // Delete the diff entry
+            /* @var TechDivision_SystemConfigDiff_Helper_Data $helper */
+            $helper = Mage::helper('techdivision_systemconfigdiff');
+            $helper->deleteDiff($entry, $path, $scope, $scopeId);
+        }
+
+        // Deletion successful
+        return true;
+    }
+
+    /**
      * Gets called by cron job and starts diff if enabled.
      */
     public function doCron()

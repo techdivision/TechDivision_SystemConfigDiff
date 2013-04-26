@@ -41,8 +41,20 @@ class TechDivision_SystemConfigDiff_Block_Adminhtml_Overview
             'label'     => $this->defaultHelper()->__('New diff'),
             'onclick'   => 'self.location.href=\'' . $this->getUrl('*/*/new') . '\'',
             'class'     => 'save',
-        ), -100);
+        ), -100, 20);
 
+        $message = Mage::helper('techdivision_systemconfigdiff')->__('All diffs will be replaced by the data of the other system! Are you sure to proceed?');
+        $replaceAllData = array(
+            'label'     => $this->defaultHelper()->__('Replace all'),
+            'onclick'   => 'confirmSetLocation(\''.$message.'\', \'' . $this->getUrl('*/*/replaceAll') . '\')',
+            'class'     => 'btn-reset'
+        );
+
+        if(!$this->defaultHelper()->diffsAvailable()){
+            $replaceAllData['disabled'] = 'disabled';
+        }
+
+        $this->_addButton('replaceAll', $replaceAllData, -100, 10);
     }
 
     /**

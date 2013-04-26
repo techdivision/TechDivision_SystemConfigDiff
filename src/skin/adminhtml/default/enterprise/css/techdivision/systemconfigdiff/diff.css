@@ -32,6 +32,7 @@ button.btn-replace span {background-image: url("../../../images/techdivision/sys
 /* System -> Config diff - General */
 .grid table {table-layout: fixed;}
 .grid table td {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+button.btn-reset.disabled span {background-image: url("../../../images/techdivision/systemconfigdiff/bkg_icon-resetbtn-disabled.png");}
 
 /* System -> Config diff - Popup */
 #popup {position: absolute; border: 5px solid gray; padding: 10px; background: #fff;}

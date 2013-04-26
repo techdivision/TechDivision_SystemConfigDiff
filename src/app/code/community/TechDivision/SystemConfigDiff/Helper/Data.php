@@ -280,4 +280,24 @@ class TechDivision_SystemConfigDiff_Helper_Data
 
         return $systemXmlPaths;
     }
+
+    /**
+     * Checks if any diff entry is available.
+     *
+     * @return bool
+     */
+    public function diffsAvailable()
+    {
+        $models = array(
+            'config' => Mage::getModel('techdivision_systemconfigdiff/config'),
+            'page' => Mage::getModel('techdivision_systemconfigdiff/page'),
+            'block' => Mage::getModel('techdivision_systemconfigdiff/block')
+        );
+
+        foreach($models as $model){
+            if($model->getCollection()->count() > 0) return true;
+        }
+
+        return false;
+    }
 }
