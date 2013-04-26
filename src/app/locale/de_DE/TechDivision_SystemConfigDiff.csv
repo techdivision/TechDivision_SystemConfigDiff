@@ -26,3 +26,7 @@
 "New diff", "Neuer Diff"
 "Replace config", "Config ersetzen"
 "WS-I compliance", "WS-I kompatibel"
+"Enable cron job", "Cron job aktivieren"
+"Cronjob for diff update", "Cron job für Diff Update"
+"Use crontab format (e.g. 10 1 * * * for 1:10 am)", "Crontab Format (z.B: 10 1 * * * für 01:10 Uhr)"
+"The API url of the other system", "Die API URL des anderen Systems"

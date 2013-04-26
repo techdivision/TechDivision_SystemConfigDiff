@@ -51,56 +51,15 @@ class TechDivision_SystemConfigDiff_Adminhtml_IndexController
      */
     public function newAction()
     {
-        /**
-         * @var TechDivision_SystemConfigDiff_Helper_Config $configHelper
-         */
-        $configHelper = Mage::helper('techdivision_systemconfigdiff/config');
+        // Get system diff model to start the diff
+        $differ = Mage::getModel('techdivision_systemconfigdiff/systemDiff');
 
         try{
-            // Get API credentials
-            $apiUrl = $configHelper->getSystemsettingsSystemUrl();
-            $apiUser = $configHelper->getSystemsettingsUser();
-            $apiPwd = $configHelper->getSystemsettingsPassword();
-            if(!$apiUrl){
-                Mage::getSingleton('core/session')->addError('SOAP error: Missing api configuration.');
-                $this->_redirect('*/*/');
-                return false;
-            }
-
-            // Set up the web service client
-            $proxy = new SoapClient($apiUrl);
-
-            // Login and get system config of other system
-            if($configHelper->getSystemsettingsWsi()){
-                $session = $proxy->login(array(
-                    'username' => $apiUser,
-                    'apiKey' => $apiPwd
-                ));
-                $sessionId = $session->result;
-                $otherConfig = $proxy->systemConfigGetConfig(array('sessionId' => $sessionId));
-                $otherConfig = $otherConfig->result;
-            } else {
-                $sessionId = $proxy->login($apiUser, $apiPwd);
-                $otherConfig = $proxy->systemConfigGetConfig($sessionId);
-            }
-
-            // Deserialize the result
-            $otherConfig = json_decode($otherConfig, true);
+            $differ->systemDiff();
         }catch(Exception $e){
             Mage::getSingleton('core/session')->addError('SOAP error: ' . $e->getMessage());
             $this->_redirect('*/*/');
             return false;
-        }
-
-        // Get system config of this system
-        $thisConfig = array();
-        foreach($configHelper->getDiffers() as $differ) {
-            $thisConfig = array_merge($differ->getSystemData(), $thisConfig);
-        }
-
-        // All registered differs do the diff
-        foreach($configHelper->getDiffers() as $differ) {
-            $differ->diff($thisConfig, $otherConfig);
         }
 
         // Redirect to overview
