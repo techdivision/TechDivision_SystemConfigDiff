@@ -16,7 +16,7 @@ Features
 * Synchronisation between both systems
 * Cron job functionality to update diffs automatically
 
-See our video illustrating the features:
+See our video illustrating the features: http://www.youtube.com/watch?v=VDh75aaE01c
 
 ![System config diff](https://raw.github.com/techdivision/TechDivision_SystemConfigDiff/github/doc/systemconfigdiff.png)
 
