@@ -63,3 +63,20 @@ can turn on/off the diff display in the system configuration. Optionally you
 can declare ignore paths which will not be shown as diff in system configuration.
 This could be helpful for paths where you are sure they will never be the same
 like the base url.
+
+
+Compatibility
+-
+The extension is compatible without problems for the following versions:
+* Community: > 1.7.0.0
+* Enterprise: > 1.12.0.0
+
+Unfortunately lower versions are not compatible because of a Magento core bug. If have set
+your webservice configuration to WSI-compliance mode, this bug will occur. The error message
+is `It looks like we got no XML document`. There is a fix for this: Copy `Mage_Api_Model_Server_WSI_Adapter_Soap`
+from core codepool to the local codepool and remove the lines in the else branch marked in the picture:
+
+![WSI Core Bug Fix](https://raw.github.com/techdivision/TechDivision_SystemConfigDiff/github/doc/wsi.png)
+
+We have to add that the use of this fix is totally in your own responsibility, we are not responsible for any
+damage caused by this fix.
