@@ -1,0 +1,10 @@
+# TechDivision_SystemConfigDiff
+src/app/code/community/TechDivision/SystemConfigDiff/              app/code/community/TechDivision/SystemConfigDiff/
+src/app/design/adminhtml/default/default/layout/techdivision/*     app/design/adminhtml/default/default/layout/techdivision/
+src/app/design/adminhtml/default/default/template/techdivision/*   app/design/adminhtml/default/default/template/techdivision/
+src/app/etc/modules/*                                              app/etc/modules/
+src/app/locale/de_DE/*                                             app/locale/de_DE/
+src/app/locale/en_US/*                                             app/locale/en_US/
+src/skin/adminhtml/default/default/css/*                           skin/adminhtml/default/default/css/
+src/skin/adminhtml/default/default/images/*                        skin/adminhtml/default/default/images/
+src/skin/adminhtml/default/default/js/*                            skin/adminhtml/default/default/js/
