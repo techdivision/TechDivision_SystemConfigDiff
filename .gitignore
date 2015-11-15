@@ -4,7 +4,9 @@
 /.idea
 /build
 /build.properties
+/composer.lock
 /instance-src
 /target
 /output
 /build.default.properties
+

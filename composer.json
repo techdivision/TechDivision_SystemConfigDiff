@@ -1,0 +1,10 @@
+{
+    "name": "techdivision/systemconfigdiff",
+    "description": "Module to diff a remote Magento system configuration and CMS blocks/pages and sync values.",
+    "type": "magento-module",
+    "license": "OSL-3.0",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
+
